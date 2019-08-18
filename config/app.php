@@ -175,6 +175,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Repositoryサービスプロバイダ
+        App\Providers\RepositoryServiceProvider::class,
+        // Serviceサービスプロバイダ
+        App\Providers\ServiceServiceProvider::class,
+
         Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 

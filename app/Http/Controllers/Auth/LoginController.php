@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
-use App\User;
+use App\Models\User;
+use App\Services\UserServiceInterface;
 
 class LoginController extends Controller
 {
@@ -29,44 +30,46 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected $userService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserServiceInterface $userService)
     {
         $this->middleware('guest')->except('logout');
+        $this->userService = $userService;
     }
 
-    // 省略
+    /**
+     * Google へのリダイレクト
+     *
+     * @return Socialite
+     */
     public function redirectToGoogle()
     {
-        // Google へのリダイレクト
         return Socialite::driver('google')->redirect();
     }
 
+    /**
+     * Googleアカウントでのログイン
+     *
+     * @return Illuminate\Http\Response
+     */
     public function handleGoogleCallback()
     {
         $gUser = Socialite::driver('google')->stateless()->user();
         // email が合致するユーザーを取得
-        $user = User::where('email', $gUser->email)->first();
-        // 見つからなければ新しくユーザーを作成
-        if ($user == null) {
-            $user = $this->createUserByGoogle($gUser);
-        }
+        // $user = User::where('email', $gUser->email)->first();
+        // // 見つからなければ新しくユーザーを作成
+        // if ($user == null) {
+        //     $user = $this->createUserByGoogle($gUser);
+        // }
+        $user = $this->userService->getUserByGoogleAccount($gUser);
         // ログイン処理
         \Auth::login($user, true);
         return redirect('/home');
-    }
-
-    public function createUserByGoogle($gUser)
-    {
-        $user = User::create([
-            'name'     => $gUser->name,
-            'email'    => $gUser->email,
-            'password' => \Hash::make(uniqid()),
-        ]);
-        return $user;
     }
 }
