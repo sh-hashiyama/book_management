@@ -64,6 +64,6 @@ class LoginController extends Controller
         $user = $this->userService->getUserByGoogleAccount($gUser);
         // ログイン処理
         \Auth::login($user, true);
-        return redirect('/home');
+        return redirect()->route('book');
     }
 }

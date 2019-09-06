@@ -17,6 +17,10 @@ class ServiceServiceProvider extends ServiceProvider
             \App\Services\UserServiceInterface::class,
             \App\Services\UserService::class
         );
+        $this->app->bind(
+            \App\Services\BookServiceInterface::class,
+            \App\Services\BookService::class
+        );
     }
 
     /**

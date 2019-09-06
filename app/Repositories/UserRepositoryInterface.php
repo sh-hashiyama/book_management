@@ -13,6 +13,15 @@ interface UserRepositoryInterface
     public function getByEmail(string $email);
 
     /**
+     * ユーザーIDから書籍に関するデータを取得する
+     *
+     * @param integer $userId
+     * @return \Illuminate\Support\Collection
+     */
+    public function getBooksByUserId(int $userId);
+
+
+    /**
      * ユーザーを新規登録する
      *
      * @param array $data

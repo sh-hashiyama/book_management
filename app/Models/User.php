@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function books()
+    {
+        return $this->belongsToMany('App\Models\Book', 'user_book', 'user_id', 'isbn')
+                    ->using('App\Models\UserBook')
+                    ->withPivot('type', 'memo');
+    }
 }

@@ -22,6 +22,17 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
+     * ユーザーIDから書籍に関するデータを取得する
+     *
+     * @param integer $userId
+     * @return \Illuminate\Support\Collection
+     */
+    public function getBooksByUserId(int $userId)
+    {
+        return User::find($userId)->books;
+    }
+
+    /**
      * ユーザーを新規登録する
      *
      * @param array $data

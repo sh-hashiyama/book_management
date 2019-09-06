@@ -12,12 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('book');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/book', function () {
+        return view('book.index');
+    })->name('book');
+    Route::get('/book/create', function () {
+        return view('book.create');
+    })->name('book.create');
+});

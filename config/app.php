@@ -235,4 +235,8 @@ return [
 
     ],
 
+    // 楽天ブックス書籍検索API
+    'rakuten_books_api_url' => env('RAKUTEN_BOOKS_API_URL'),
+    'rakuten_books_api_key' => env('RAKUTEN_BOOKS_API_KEY'),
+
 ];
