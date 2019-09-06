@@ -1,3 +1,3 @@
-# bootcamp
+# 書籍管理
 
-Web Engineer BOOTCAMPで開発するプロダクト
+* laravel + vue.jsで作る書籍管理のwebアプリケーション
