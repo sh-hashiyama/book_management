@@ -9,7 +9,7 @@ use Illuminate\Contracts\Validation\Validator;
 abstract class ApiRequest extends FormRequest
 {
     /**
-     * バリデーションエラー時にJsonReponseを返す
+     * バリデーションエラー時のJsonReponseを返す
      *
      * @param Validator $validator
      * @return void

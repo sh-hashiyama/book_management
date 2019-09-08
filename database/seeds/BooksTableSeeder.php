@@ -12,7 +12,7 @@ class BooksTableSeeder extends Seeder
     public function run()
     {
         DB::table('books')->insert([
-            ['title' => '基礎から学ぶvue.js', 'isbn' => '9784863542457', 'image_url' => 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2457/9784863542457.jpg?_ex=120x120', 'description' => ''],
+            ['title' => '基礎から学ぶvue.js', 'isbn' => '9784863542457', 'image_url' => 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2457/9784863542457.jpg?_ex=120x120'],
             ['title' => 'PHPフレームワーク Laravel入門', 'isbn' => '9784798052588', 'image_url' => 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/2588/9784798052588.jpg?_ex=120x120'],
             ['title' => 'Bootstrap 4 フロントエンド開発の教科書', 'isbn' => '9784297100209', 'image_url' => 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/0209/9784297100209.jpg?_ex=120x120'],
             ['title' => '改訂新版JavaScript本格入門 ~モダンスタイルによる基礎から現場での応用まで', 'isbn' => '9784774184111', 'image_url' => 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/4111/9784774184111.jpg?_ex=120x120'],
