@@ -14,14 +14,17 @@ const app = new Vue({
             type: '',
         },
         alertStatus: '',
+        loading: false,
         validationErrors: [],
     },
     methods: {
         getBooks() {
-            let url = '/api/book/search?keyword=' + this.keyword
-            axios.get(url)
+            this.results = []
+            this.loading = true
+            axios.get('/api/book/search?keyword=' + this.keyword)
                 .then((res) => {
                     this.results = res.data.Items
+                    this.loading = false
                 })
                 .catch(err => {
                     console.log(err)

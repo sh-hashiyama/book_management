@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
-use App\Models\User;
 use App\Services\UserServiceInterface;
+use Auth;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -63,7 +63,7 @@ class LoginController extends Controller
         $gUser = Socialite::driver('google')->stateless()->user();
         $user = $this->userService->getUserByGoogleAccount($gUser);
         // ログイン処理
-        \Auth::login($user, true);
+        Auth::login($user, true);
         return redirect()->route('book');
     }
 }

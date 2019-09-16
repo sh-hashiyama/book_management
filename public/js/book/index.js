@@ -12,15 +12,17 @@ const app = new Vue({
             img: '',
         },
         status: '',
+        loading: false,
     },
     created: function () {
+        this.loading = true
         axios.get('/api/book')
             .then((res) => {
-                console.log(res)
+                this.loading = false
                 this.books = res.data
             })
             .catch(err => {
-                console.log(err)
+                this.loading = false
                 this.status = 'getError'
             })
     },

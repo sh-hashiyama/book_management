@@ -20,6 +20,10 @@
         <div class="col-sm-4"><a class="btn btn-outline-secondary" href="{{ route('book') }}" role="button">書籍一覧へ</a></div>
     </div>
     <br>
+    <div class="row mb-2">
+        <div class=""></div>
+    </div>
+    <img src="/img/loading.gif" alt="loading" v-if="loading">
     <div class="row mb-2" v-for="result in results" v-bind:key="result.Item.isbn">
         <div class="col-md-6">
             <div class="card flex-md-row mb-4 shadow-sm h-md-250">

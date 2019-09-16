@@ -7,6 +7,7 @@
         <div class="form-group">
             <a href="{{ route('book.create') }}" class="btn btn-primary">書籍登録へ</a>
         </div>
+        <img src="/img/loading.gif" alt="loading" v-if="loading">
         <div class="row">
             <div class="col-sm-2" v-for="book in books">
                 <div class="card mb-4 shadow-sm h-100">
