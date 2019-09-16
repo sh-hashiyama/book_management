@@ -49,12 +49,20 @@ class BookService implements BookServiceInterface
     /**
      * 楽天ブックスapiによる書籍の検索
      *
-     * @param string $query
+     * @param string $keyword
      * @return json
      */
-    public function searchForRakutenAPI(string $query)
+    public function searchForRakutenAPI(string $keyword)
     {
-        $url = config('app.rakuten_books_api_url') . '?applicationId=' . config('app.rakuten_books_api_key') . '&booksGenreId=001&hits=10&title=' . $query;
+        // getパラメータの設定
+        $query = http_build_query([
+            'applicationId' => config('app.rakuten_books_api_key'),
+            'booksGenreId'  => '001',
+            'hits'          => 10,
+            'title'         => $keyword
+        ]);
+        $url = config('app.rakuten_books_api_url').'?'.$query;
+
         // cURLセッションを初期化
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url); // 取得するURLを指定
@@ -107,7 +115,7 @@ class BookService implements BookServiceInterface
 
     /**
      * 各ユーザーの書籍に付与する情報を更新する
-     * 
+     *
      * @param array $data
      * @param int $userId
      * @return bool
@@ -119,7 +127,7 @@ class BookService implements BookServiceInterface
 
     /**
      * 既にユーザーが登録している書籍か確認する
-     * 
+     *
      * @param string $isbn
      * @param int $userId
      * @return array
